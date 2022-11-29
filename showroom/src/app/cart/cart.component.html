@@ -1,0 +1,12 @@
+<h1>Carrito de compras</h1>
+
+<div class="container text-center"  class="card">
+    <div class="row">
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let product of (cartList$ | async)" class="list-group-item">
+                {{product.name}}: {{product.quantity}} 
+                <button (click)="deleteToCart(product)">Eliminar</button>
+            </li>
+        </ul>
+    </div>
+</div>

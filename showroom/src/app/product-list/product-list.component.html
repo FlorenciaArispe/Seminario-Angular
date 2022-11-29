@@ -1,0 +1,28 @@
+<h1>Productos</h1>
+
+<div class="container text-center">
+    <div class="row">
+    <div class="col" class="card" style="width: 18rem;" *ngFor="let product of products"
+        [ngClass]="{'clearance': product.clearance}">
+        <span *ngIf="product.clearance">LIQUIDACIÔN</span>
+        <img  class="img-thumbnail" [src]="product.image" [alt]="product.name">
+        <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Precio: {{product.price | currency}}</li>
+            <li class="list-group-item">Talle: {{product.waist}}</li>
+            <li class="list-group-item">
+                <span class="badge text-bg-warning" *ngIf="product.stock==0">SIN STOCK</span>
+                <span *ngIf="product.stock>0">Stock: {{product.stock}}</span>
+            </li>
+            
+            <li class="list-group-item">
+                <app-input-number [(quantity)]="product.quantity" [max]="product.stock" *ngIf="product.stock">
+                </app-input-number>
+            </li>
+            <button  class="btn btn-dark"  (click)="addToCart(product)" [disabled]="product.quantity<1">Agregar al carrito</button>
+        </ul>
+    </div>
+</div>
+</div>
